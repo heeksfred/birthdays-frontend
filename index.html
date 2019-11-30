@@ -2,6 +2,7 @@
 <head>
 
   <script src="src/services.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body>
@@ -17,6 +18,22 @@
 <div id="upcoming">
 
 </div>
+
+<script LANGUAGE="JavaScript">
+  let items = getTodaysBirthdays();
+    document.getElementById("todays").innerHTML = "No birthdays today :-(";
+    items.forEach(birthday => {
+      let age = calculateAge(birthday.birthday);
+      document.getElementById("todays").innerHTML = "<p>Happy Birthday " + birthday.name + ", " + age + " today!! </p>"
+    });
+
+    let next = getBirthdaysInNextTwoWeeks();
+    document.getElementById("upcoming").innerHTML = "No birthdays coming up :-(";
+    next.forEach(birthday => {
+      let age = calculateAge(birthday.birthday);
+      document.getElementById("upcoming").innerHTML = "<p>" + birthday.name + " will be " + age + " in " + calculateDays(birthday.birthday) + " </p>"
+    });
+</script>
 
 </body>
 </html>
