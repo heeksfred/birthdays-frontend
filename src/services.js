@@ -24,6 +24,15 @@ var birthday_list = [
 ]
 
   /*
+   * Gets all the birthdays in the birthday_list
+   * returns - array of {name: <name>, birthday: <date>}
+   */
+function getAllBirthdays() {
+    console.log("Birthdays: "+JSON.stringify(birthday_list));
+    return birthday_list;
+}
+
+  /*
    * Gets all the birthdays in the supplied date range
    * fromDate - start of date range, in yyyy-mm-dd format
    * toDate - end of date range, in yyyy-mm-dd format
@@ -73,5 +82,20 @@ function getBirthdayWithinRange(fromDate, toDate) {
     return getBirthdayWithinRange(today, twoWeeksFromNow);
   }
 
+  /*
+   * Calculate the age of a person on their next birthday
+   * birthdate - the birthday to check, in yyyy-mm-dd format
+   * returns - age of the person on their next birthday
+   */
+  function calculateAge(birthdate) {
+    birthdate = birthdate.split("-");
+    let now = new Date();
 
-  module.exports = { getBirthdayWithinRange, getTodaysBirthdays, getBirthdaysInNextTwoWeeks };
+    let currentYear = now.getFullYear();
+    let birthYear = birthdate[0];
+
+    return (currentYear - birthYear);
+  }
+
+
+  module.exports = { getAllBirthdays, getBirthdayWithinRange, getTodaysBirthdays, getBirthdaysInNextTwoWeeks, calculateAge };
