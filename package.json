@@ -1,0 +1,26 @@
+{
+  "name": "birthdays-frontend",
+  "version": "1.0.0",
+  "description": "Clone this repository to a local directory and setup with:",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Fred Heeks",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heeksfred/birthdays-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/heeksfred/birthdays-frontend/issues"
+  },
+  "homepage": "https://github.com/heeksfred/birthdays-frontend#readme"
+}
