@@ -33,14 +33,17 @@
     document.getElementById("toggleButton").innerHTML = (buttonText == "View all birthdays" ? "Hide all birthdays" : "View all birthdays");
   }
 
-  let allDays = getAllBirthdays();
+  function refresh() {
+    let allDays = getAllBirthdays();
     document.getElementById("allBirthdays").innerHTML = "";
     allDays.forEach(birthday => {
       let age = calculateAge(birthday.birthday);
-      document.getElementById("allBirthdays").innerHTML += '<p>' + birthday.name + " will be " + age + "</p>";
+      let deleteButton = "deleteBirthday({name: '" + birthday.name + "', birthday: '" + birthday.birthday + "'})";
+      document.getElementById("allBirthdays").innerHTML += '<p><a id="deleteLink" title="Delete birthday" href="#" onclick="' + deleteButton + '; refresh(); return false;" class="delete">Delete</a>'
+                                                        + birthday.name + " will be " + age + " in " +  calculateDays(birthday.birthday) + "</p>";
     });
 
-  let items = getTodaysBirthdays();
+    let items = getTodaysBirthdays();
     document.getElementById("todays").innerHTML = "No birthdays today :-(";
     items.forEach(birthday => {
       let age = calculateAge(birthday.birthday);
@@ -53,6 +56,10 @@
       let age = calculateAge(birthday.birthday);
       document.getElementById("upcoming").innerHTML = "<p>" + birthday.name + " will be " + age + " in " + calculateDays(birthday.birthday) + " </p>"
     });
+  }
+
+  refresh();
+
 </script>
 
 </body>
