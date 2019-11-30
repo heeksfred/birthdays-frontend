@@ -82,6 +82,26 @@ function getBirthdayWithinRange(fromDate, toDate) {
     return getBirthdayWithinRange(today, twoWeeksFromNow);
   }
 
+    /*
+   * Adds a birthday to the birthday_list
+   * data - Object to add to the list, as {name: <name>, birthday: <date>}
+   * returns - nothing
+   */
+  function addBirthday(data) {
+    birthday_list.push(data);
+  }
+
+  /*
+   * Removes a birthday from the birthday_list
+   * data - Object to remove from the list, as {name: <name>, birthday: <date>}
+   * returns - nothing
+   */
+  function deleteBirthday(data) {
+    birthday_list = birthday_list.filter(birthday => {
+        return (birthday.name !== data.name && birthday.birthday !== data.birthday);
+     });
+  }
+
   /*
    * Calculate the age of a person on their next birthday
    * birthdate - the birthday to check, in yyyy-mm-dd format
@@ -98,4 +118,4 @@ function getBirthdayWithinRange(fromDate, toDate) {
   }
 
 
-  module.exports = { getAllBirthdays, getBirthdayWithinRange, getTodaysBirthdays, getBirthdaysInNextTwoWeeks, calculateAge };
+  module.exports = { getAllBirthdays, getBirthdayWithinRange, getTodaysBirthdays, getBirthdaysInNextTwoWeeks, addBirthday, deleteBirthday, calculateAge };
