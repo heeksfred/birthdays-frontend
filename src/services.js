@@ -23,7 +23,7 @@ var birthday_list = [
     }
 ]
 
-  /*
+/*
    * Gets all the birthdays in the birthday_list
    * returns - array of {name: <name>, birthday: <date>}
    */
@@ -82,7 +82,7 @@ function getBirthdayWithinRange(fromDate, toDate) {
     return getBirthdayWithinRange(today, twoWeeksFromNow);
   }
 
-    /*
+  /*
    * Adds a birthday to the birthday_list
    * data - Object to add to the list, as {name: <name>, birthday: <date>}
    * returns - nothing
@@ -117,5 +117,45 @@ function getBirthdayWithinRange(fromDate, toDate) {
     return (currentYear - birthYear);
   }
 
+  /*
+   * Calculate the number of days until a supplied birthday
+   * birthdate - the birthday to check, in yyyy-mm-dd format
+   * returns - string of the number of months, weeks and days until
+   * the birthday
+   */
+  function calculateDays(birthdate) {
+    birthdate = birthdate.split("-");
+    let now = new Date();
+    let birthMonth = parseInt(birthdate[1]);
+    let birthDay = parseInt(birthdate[2]);
+    let currentMonth = now.getMonth()+1;
+    let description = "";
+    
+    if (birthMonth >= currentMonth) {
+      let months = birthMonth - currentMonth;
+      if (months <= 1) {
+        months = 0;
+      } 
+      description += months + " months, ";
+    } else {
+      let months = 12 - currentMonth;
+      if (birthMonth > 1) {
+        months += (birthMonth - 1);
+      }
+      if (months == 1) {
+        description += months + " month, ";
+      } else {
+        description += months + " months, ";
+      }
+    }
+    let weeks = 0;
+    if (birthDay > 7) {
+      weeks = Math.floor(birthDay / 7);
+      description += weeks + " week" + (weeks != 1 ? "s " : " ");
+    }
+    description += "and " + ((birthDay - (weeks * 7)) + " days");
 
-  module.exports = { getAllBirthdays, getBirthdayWithinRange, getTodaysBirthdays, getBirthdaysInNextTwoWeeks, addBirthday, deleteBirthday, calculateAge };
+    return description;
+  }
+
+  module.exports = { getAllBirthdays, getBirthdayWithinRange, getTodaysBirthdays, getBirthdaysInNextTwoWeeks, addBirthday, deleteBirthday, calculateAge, calculateDays };
