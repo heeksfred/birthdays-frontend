@@ -6,7 +6,6 @@ Clone this repository to a local directory and setup with:
 
 ```
  >  npm install
- >  npm run setup
 ```
 
 To run unit tests:
@@ -16,3 +15,7 @@ To run unit tests:
 ```
 
 ## Functionality
+
+This displays a single page with a list of birthdays.
+It is pre-populated with some test people and birthdays
+but more may be added.
