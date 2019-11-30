@@ -8,6 +8,10 @@
 <body>
 
 <H1>Birthday Calendar</H1>
+<P>
+  <div class="allBirthdays" id="allBirthdays" style="display: none"></div>
+  <button id="toggleButton" class="button" onclick="toggleBirthdays()">View all birthdays</button>
+</P>
 
 <h2>Today's Birthdays:</h2>
 <div id="todays">
@@ -20,6 +24,22 @@
 </div>
 
 <script LANGUAGE="JavaScript">
+
+  function toggleBirthdays() {
+    const element = document.querySelector('.allBirthdays');
+    const buttonText = document.getElementById("toggleButton").innerHTML;
+    const style = element.style.display;
+    document.getElementById("allBirthdays").style.display = (style == "none" ? "block" : "none");
+    document.getElementById("toggleButton").innerHTML = (buttonText == "View all birthdays" ? "Hide all birthdays" : "View all birthdays");
+  }
+
+  let allDays = getAllBirthdays();
+    document.getElementById("allBirthdays").innerHTML = "";
+    allDays.forEach(birthday => {
+      let age = calculateAge(birthday.birthday);
+      document.getElementById("allBirthdays").innerHTML += '<p>' + birthday.name + " will be " + age + "</p>";
+    });
+
   let items = getTodaysBirthdays();
     document.getElementById("todays").innerHTML = "No birthdays today :-(";
     items.forEach(birthday => {
