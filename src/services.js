@@ -12,6 +12,14 @@ var birthday_list = [
     {
         "name": "Anna Jackson",
         "birthday": "1993-10-15"
+    },
+    {
+        "name": "Fred Heeks",
+        "birthday": "1970-11-30"
+    },
+    {
+        "name": "Next Date",
+        "birthday": "1970-12-14"
     }
 ]
 
@@ -41,7 +49,29 @@ function getBirthdayWithinRange(fromDate, toDate) {
      return birthdaysWithinRange;
 }
 
+  /*
+   * Gets all the birthdays for today
+   * returns - array of {name: <name>, birthday: <date>}
+   */
+  function getTodaysBirthdays() {
+    let now = new Date();
+    let today = now.getMonth() + 1 + "-" + now.getDate();
+    
+    return getBirthdayWithinRange(today, today);
+  }
+
+  /*
+   * Gets all the birthdays in the next two weeks
+   * returns - array of {name: <name>, birthday: <date>}
+   */
+  function getBirthdaysInNextTwoWeeks() {
+    let now = new Date();
+    let today = now.getMonth() + 1 + "-" + now.getDate();
+    let nextdate = new Date(now.getFullYear(),now.getMonth(),now.getDate()+14);
+    let twoWeeksFromNow = nextdate.getMonth() + 1 + "-" + nextdate.getDate();
+
+    return getBirthdayWithinRange(today, twoWeeksFromNow);
+  }
 
 
-
-  module.exports = { getBirthdayWithinRange };
+  module.exports = { getBirthdayWithinRange, getTodaysBirthdays, getBirthdaysInNextTwoWeeks };
