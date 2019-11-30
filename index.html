@@ -3,11 +3,12 @@
 
   <script src="src/services.js"></script>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
 
-<H1>Birthday Calendar</H1>
+<H1><i class="fa fa-birthday-cake" style="color:rgb(233, 14, 116);"></i>Birthday Calendar<i class="fa fa-birthday-cake" style="color:rgb(233, 14, 116);"></i></H1>
 <P>
   <div class="allBirthdays" id="allBirthdays" style="display: none"></div>
   <button id="toggleButton" class="button" onclick="toggleBirthdays()">View all birthdays</button>
@@ -23,8 +24,13 @@
 
 </div>
 
+<h2>Add a New Birthday:</h2>
+<form name="addBirthday">
+  Persons Name: <input type="text" name="name"> Birthday <input type="date" name="birthday"><a href="#" class="add" onClick="doSubmit()">Add</a>
+</form>
+<P>
 <script LANGUAGE="JavaScript">
-
+ 
   function toggleBirthdays() {
     const element = document.querySelector('.allBirthdays');
     const buttonText = document.getElementById("toggleButton").innerHTML;
@@ -56,6 +62,16 @@
       let age = calculateAge(birthday.birthday);
       document.getElementById("upcoming").innerHTML = "<p>" + birthday.name + " will be " + age + " in " + calculateDays(birthday.birthday) + " </p>"
     });
+  }
+
+  function doSubmit(){
+    let nameStr = document.addBirthday.name.value;
+    let birthdayStr = document.addBirthday.birthday.value;
+    let data = {name: nameStr, birthday: birthdayStr};
+    console.log("Data: "+data);
+    addBirthday(data);
+    refresh();
+    return true;
   }
 
   refresh();
